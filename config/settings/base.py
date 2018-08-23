@@ -11,16 +11,41 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import json
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SETTINGS_DIR = os.path.join(BASE_DIR, 'settings')
+
+try:
+    with open(os.path.join(SETTINGS_DIR, 'keys.json'), 'r') as fh:
+        keys = json.loads(fh.read())
+        fh.close()
+except FileNotFoundError:
+    msg = 'Configure keys.json in the settings folder'
+    raise ImproperlyConfigured(msg)
+
+
+def get_key(key, keys=keys):
+    """Retrieve a configuration key value from a key dictionary"""
+
+    try:
+        return keys[key]
+    except KeyError:
+        msg = (
+            'Set the "{}" setting in keys.json or the keys dictionary you '
+            'provided'
+        ).format(key)
+        raise ImproperlyConfigured(msg)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'xv7@pg44d&o*mi^dioa-9^=j0(@=r6=otvu(34f2u&cjyykpvy'
+SECRET_KEY = get_key('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
