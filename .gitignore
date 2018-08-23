@@ -1,0 +1,6 @@
+.pyc
+__pycache__/
+
+keys.json
+
+db.sqlite3
