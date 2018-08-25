@@ -68,7 +68,8 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'movielist.core'
+    'movielist.core',
+    'movielist.movie',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
