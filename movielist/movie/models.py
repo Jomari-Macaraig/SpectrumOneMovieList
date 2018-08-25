@@ -8,3 +8,6 @@ from movielist.core.models import Audit
 class Movie(Audit):
 
     title = models.CharField(max_length=128, unique=True)
+
+    def __str__(self):
+        return self.title
