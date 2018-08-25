@@ -1,10 +1,7 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth import get_user_model
 
 # Create your models here.
-
-
-USER = get_user_model()
 
 
 class Audit(models.Model):
@@ -19,7 +16,7 @@ class Audit(models.Model):
 
 class UserAudit(Audit):
 
-    user = models.ForeignKey(USER, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         abstract = True
