@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from movielist.core.models import Audit
 
@@ -11,3 +12,6 @@ class Movie(Audit):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('movie_detail', kwargs={'pk': self.pk})

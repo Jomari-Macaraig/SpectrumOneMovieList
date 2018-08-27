@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   {{ movie.title }}
 {% endblock body %}

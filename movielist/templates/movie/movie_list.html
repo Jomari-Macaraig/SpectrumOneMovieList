@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+<a href="{% url 'movie_create' %}" class="btn btn-primary">Add</a>
   <div class="table-responsive-sm">
     <table class="table table-borderless">
       {% for movie in object_list %}

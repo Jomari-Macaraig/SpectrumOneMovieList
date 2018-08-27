@@ -1,12 +1,22 @@
 from django.views.generic import ListView, DetailView
-from django.shortcuts import render
+from django.views.generic.edit import CreateView
 
+from .mixins import MovieActionMixin
 from .models import Movie
 
-class MovieList(ListView):
+
+class MovieCreate(MovieActionMixin, CreateView):
     model = Movie
-    template_name = 'movie/movie_list.html'
+    fields = ['title']
+    action_past_tense = 'created'
+    template_name = 'movie/movie_create_form.html'
+
 
 class MovieDetail(DetailView):
     model = Movie
     template_name = 'movie/movie_detail.html'
+
+
+class MovieList(ListView):
+    model = Movie
+    template_name = 'movie/movie_list.html'
