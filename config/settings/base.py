@@ -18,6 +18,10 @@ from django.core.exceptions import ImproperlyConfigured
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SETTINGS_DIR = os.path.join(BASE_DIR, 'settings')
+ROOT_DIR = os.path.dirname(BASE_DIR)
+APP_DIR = os.path.join(ROOT_DIR, 'movielist')
+TEMPLATE_DIR = os.path.join(APP_DIR, 'templates')
+
 
 try:
     with open(os.path.join(SETTINGS_DIR, 'keys.json'), 'r') as fh:
@@ -89,7 +93,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

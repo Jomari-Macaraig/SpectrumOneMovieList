@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+  <ul>
+    {% for movie in object_list %}
+      <li>{{ movie.title }}</li>
+    {% endfor %}
+  </ul>
+{% endblock body %}
