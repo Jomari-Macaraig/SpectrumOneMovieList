@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .mixins import MovieActionMixin
 from .models import Movie
@@ -10,6 +10,13 @@ class MovieCreate(MovieActionMixin, CreateView):
     fields = ['title']
     action_past_tense = 'created'
     template_name = 'movie/movie_create_form.html'
+
+
+class MovieUpdate(MovieActionMixin, UpdateView):
+    model = Movie
+    fields = ['title']
+    action_past_tense = 'updated'
+    template_name = 'movie/movie_update_form.html'
 
 
 class MovieDetail(DetailView):
