@@ -7,6 +7,9 @@
       {% for movie in object_list %}
         <tr>
           <td>{{ movie.title }}<td/>
+              <td>
+                <a href="{% url 'movie_update' pk=movie.id %}" class="btn btn-link">Update</a>
+              <td/>
               <td><a href="{% url 'movie_detail' pk=movie.id %}" class="btn btn-link">View</a><td/>
         </tr>
       {% endfor %}
