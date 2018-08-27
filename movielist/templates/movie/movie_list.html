@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+  <div class="table-responsive-sm">
+    <table class="table table-borderless">
+      {% for movie in object_list %}
+        <tr>
+          <td>{{ movie.title }}<td/>
+              <td><a href="{% url 'movie_detail' pk=movie.id %}" class="btn btn-link">View</a><td/>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock body %}
