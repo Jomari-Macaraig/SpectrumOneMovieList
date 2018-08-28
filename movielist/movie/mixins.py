@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.utils import timezone
 
 
 class MovieActionMixin:
@@ -18,3 +19,12 @@ class MovieActionMixin:
             )
         )
         return super(MovieActionMixin, self).form_valid(form)
+
+
+class LastVisitedSession:
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['last_visited'] = self.request.session.get('last_visited')
+        self.request.session['last_visited'] = timezone.now().isoformat()
+        return context

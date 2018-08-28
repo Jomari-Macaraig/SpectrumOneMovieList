@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+{% if last_visited %}
+  <h1>Welcome back! You’ve visited this page last {{ last_visited }}</h1>
+{% else %}
+  <h1>Welcome to our site!</h1>
+{% endif %}
 <a href="{% url 'movie_create' %}" class="btn btn-primary">Add</a>
   <div class="table-responsive-sm">
     <table class="table table-borderless">
