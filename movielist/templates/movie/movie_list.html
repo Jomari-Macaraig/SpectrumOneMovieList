@@ -7,20 +7,29 @@
       {% for movie in object_list %}
         <tr>
           <td>{{ movie.title }}<td/>
-              <td>
-                <a href="{% url 'movie_update' pk=movie.id %}" class="btn btn-link">Update</a>
-              <td/>
-              <td>
-                <button type="button"
-                        class="deleteButtons btn btn-link btn-danger"
-                        data-toggle="modal"
-                        data-target="#deleteModal"
-                        data-id="{{ movie.id }}"
-                >
-                  Delete
-                </button>
-              <td/>
-              <td><a href="{% url 'movie_detail' pk=movie.id %}" class="btn btn-link">View</a><td/>
+          <td>
+            <button type="button"
+                    class="likeButtons btn"
+                    data-id="{{ movie.id }}"
+                    data-like="{{ movie.like }}"
+            >
+              {{ movie.like }}
+            </button>
+          </td>
+          <td>
+            <a href="{% url 'movie_update' pk=movie.id %}" class="btn btn-link">Update</a>
+          <td/>
+          <td>
+            <button type="button"
+                    class="deleteButtons btn btn-link btn-danger"
+                    data-toggle="modal"
+                    data-target="#deleteModal"
+                    data-id="{{ movie.id }}"
+            >
+              Delete
+            </button>
+          <td/>
+          <td><a href="{% url 'movie_detail' pk=movie.id %}" class="btn btn-link">View</a><td/>
         </tr>
       {% endfor %}
     </table>

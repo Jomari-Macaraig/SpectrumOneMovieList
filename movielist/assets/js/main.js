@@ -35,5 +35,19 @@
         location.reload();
       }
     )
-  })
+  });
+
+  $(".likeButtons").click(function () {
+    var element = $(this)
+    var likes = parseInt(element.attr("data-like")) + 1
+    $.ajax({
+      url: "/movie/api/" + element.attr("data-id") + "/update",
+      type: "PATCH",
+      data: {"like": likes},
+      success: function (result) {
+        element.attr("data-like", likes);
+        element.text(likes)
+      }
+    })
+  });
 })();
