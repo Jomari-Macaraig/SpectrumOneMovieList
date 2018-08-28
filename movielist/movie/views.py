@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from rest_framework.generics import UpdateAPIView
 
-from .mixins import MovieActionMixin
+from .mixins import LastVisitedSession, MovieActionMixin
 from .models import Movie
 from .serializers import MovieSerializer
 
@@ -49,7 +49,7 @@ class MovieDetail(DetailView):
     template_name = 'movie/movie_detail.html'
 
 
-class MovieList(ListView):
+class MovieList(LastVisitedSession, ListView):
     model = Movie
     template_name = 'movie/movie_list.html'
 
