@@ -4,8 +4,7 @@
   <form action="{% url 'movie_update' movie.id %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
-      <label for="title">Movie Title:</label>
-      <input type="text" name="title" value="{{ movie.title }}"/>
+      {{ form }}
     </div>
     <button type="submit" class="btn btn-primary">Update</button>
   </form>
