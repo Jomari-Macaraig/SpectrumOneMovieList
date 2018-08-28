@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
 {% block last_visited %}
   {% if last_visited %}
     <i>Welcome back!<br/> You’ve visited this page last {{ last_visited }}</i>
@@ -8,6 +9,7 @@
   {% endif %}
 {% endblock last_visited %}
 {% block body %}
+  {% render_breadcrumbs %}
   <a href="{% url 'movie_create' %}" class="btn btn-primary float-right">Add</a>
   <br/>
   <br/>

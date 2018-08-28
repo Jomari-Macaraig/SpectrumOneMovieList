@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Movie detail" "movie_detail" movie.id %}
+{% endblock breadcrumbs %}
 {% block body %}
+  {% render_breadcrumbs %}
   {% if messages %}
     {% for message in messages %}
       <div class="alert alert-success alert-dismissible">
