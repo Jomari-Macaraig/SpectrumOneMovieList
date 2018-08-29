@@ -70,6 +70,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_bootstrap_breadcrumbs',
 ]
 
 LOCAL_APPS = [

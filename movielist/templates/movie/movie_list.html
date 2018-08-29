@@ -1,42 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
+{% block last_visited %}
+  {% if last_visited %}
+    <i>Welcome back!<br/> You’ve visited this page last {{ last_visited }}</i>
+  {% else %}
+    <i>Welcome to our site!</i>
+  {% endif %}
+{% endblock last_visited %}
 {% block body %}
-{% if last_visited %}
-  <h1>Welcome back! You’ve visited this page last {{ last_visited }}</h1>
-{% else %}
-  <h1>Welcome to our site!</h1>
-{% endif %}
-<a href="{% url 'movie_create' %}" class="btn btn-primary">Add</a>
+  {% render_breadcrumbs %}
+  <a href="{% url 'movie_create' %}" class="btn btn-primary float-right">Add</a>
+  <br/>
+  <br/>
   <div class="table-responsive-sm">
-    <table class="table table-borderless">
-      {% for movie in object_list %}
+    <table class="table table-hover">
+      <thead>
         <tr>
-          <td>{{ movie.title }}<td/>
-          <td>
-            <button type="button"
-                    class="likeButtons btn"
-                    data-id="{{ movie.id }}"
-                    data-like="{{ movie.like }}"
-            >
-              {{ movie.like }}
-            </button>
-          </td>
-          <td>
-            <a href="{% url 'movie_update' pk=movie.id %}" class="btn btn-link">Update</a>
-          <td/>
-          <td>
-            <button type="button"
-                    class="deleteButtons btn btn-link btn-danger"
-                    data-toggle="modal"
-                    data-target="#deleteModal"
-                    data-id="{{ movie.id }}"
-            >
-              Delete
-            </button>
-          <td/>
-          <td><a href="{% url 'movie_detail' pk=movie.id %}" class="btn btn-link">View</a><td/>
+          <th style="width:90%">Movie Title</th>
+          <th colspan="4">Actions</th>
         </tr>
-      {% endfor %}
+      </thead>
+      <tbody>
+        {% for movie in object_list %}
+          <tr>
+            <td>{{ movie.title }}<td/>
+            <td class="m-1 p-1">
+              <a role="button"
+                 href="#"
+                 class="likeButtons btn p-0 m-0"
+                 data-id="{{ movie.id }}"
+                 data-like="{{ movie.like }}"
+                 onclick="return false"
+              >
+                <span class="badge badge-info bg-secondary">
+                  <i class="far fa-thumbs-up"></i> <span>{{ movie.like }}</span>
+                </span>
+              </a>
+            </td>
+            <td class="m-1 p-1">
+              <a href="{% url 'movie_update' pk=movie.id %}"
+                 class="btn btn-link m-0 p-0 text-secondary"
+              >
+                <i class="fas fa-edit"></i>
+              </a>
+            </td>
+            <td class="m-1 p-1">
+              <a role="button"
+                 href="#"
+                 class="deleteButtons btn m-0 p-0 text-secondary"
+                 data-toggle="modal"
+                 data-target="#deleteModal"
+                 data-id="{{ movie.id }}"
+                 onclick="return false"
+              >
+                <i class="fas fa-trash"></i>
+              </a>
+            </td>
+            <td class="m-1 p-1">
+              <a href="{% url 'movie_detail' pk=movie.id %}"
+                 class="btn btn-link m-0 p-0 text-secondary">
+                <i class="fas fa-external-link-square-alt"></i>
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
     </table>
   </div>
   <div id="deleteModal" class="modal fade" role="dialog">
