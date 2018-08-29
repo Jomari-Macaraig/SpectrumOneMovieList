@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap_breadcrumbs %}
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Movie edit" "movie_update" movie.id %}
+{% endblock breadcrumbs %}
 {% block body %}
+  {% render_breadcrumbs %}
   <form action="{% url 'movie_update' movie.id %}" method="POST">
     {% csrf_token %}
     <div class="form-group">

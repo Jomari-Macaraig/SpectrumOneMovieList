@@ -46,7 +46,7 @@
       data: {"like": likes},
       success: function (result) {
         element.attr("data-like", likes);
-        element.text(likes)
+        element.find("span").find("span").text(likes)
       }
     })
   });
